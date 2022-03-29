@@ -1,0 +1,163 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: url("close-up-hand-writing-on-notebook-top-view.jpg") center
+    center/cover no-repeat;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* object-fit: cover; */
+}
+body::before {
+  content: "";
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -99;
+}
+#sads {
+  object-fit: cover;
+}
+#salom {
+  width: 100%;
+  height: 100vh;
+}
+#rasim {
+  width: 100%;
+  background-image: url("{% static 'picture1.jpg' %}");
+  height: 100vh; /* You must set a specified height */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+}
+#rasim_tex {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  /* border: 1px solid red; */
+  width: 100%;
+}
+#hksd {
+  text-decoration: none !important;
+  color: #fff !important;
+}
+#bbbtt {
+  text-decoration: none;
+  padding: 10px;
+  color: white;
+  background-color: green;
+  border-radius: 5px;
+  float: right;
+  border: none;
+  margin-bottom: 10px;
+}
+#title_text_jfn {
+  color: #fff;
+  background-color: rgba(20, 75, 126, 0.514) !important;
+  width: 40% !important;
+  margin: 5px auto;
+}
+#submitsss {
+  float: right;
+}
+#cadsds {
+  margin-top: 20px !important;
+}
+#cadsds {
+  height: auto;
+  /* overflow-y: scroll !important; */
+  margin-top: 20px !important;
+  /* border: 1px solid red !important; */
+}
+#cadsds::-webkit-scrollbar-thumb {
+  width: 1px !important;
+}
+#medya {
+  display: flex;
+  flex-wrap: wrap;
+}
+#dj {
+  display: none;
+}
+#meedss {
+  display: flex;
+  flex-wrap: wrap;
+}
+#buutttdds {
+  float: right;
+  /* margin-top: -40px; */
+
+  margin-bottom: -20px;
+}
+.card {
+  border: none !important;
+}
+.card .card-body {
+  padding: 0 20px !important;
+}
+
+#djshpi {
+  margin: 10px 0px 0px 0px !important;
+}
+#akjhs {
+  border: 10px solid red;
+}
+#ohusdfjbk {
+  margin-top: -10px !important;
+}
+.modal-content {
+  border: none !important;
+}
+.h1-s{
+  font-size: 90px;
+  color: rgb(39 136 222);
+  text-shadow: 2px 2px 1px rgb(255 255 255);
+  font-family: 'Times New Roman', Times, serif ,serif;
+}
+.mt-5{
+  margin-top: 50px;
+}
+@media (max-width: 992px) {
+  .h1-s{
+    font-size: 64px;
+  }
+}
+@media (max-width: 768px) {
+  .h1-s{
+    font-size: 50px;
+  }
+}
+@media (max-width: 576px) {
+  body{
+    padding-left: 15px;
+    padding-right: 15px !important;
+  }
+  .h3-1{
+    font-size: 18px;
+  }
+  .h1-s{
+    font-size: 27px;
+  }
+  .mt-5{
+    font-size: 20px;
+  }
+
+}
+@media (max-width: 330px) {
+  .btna{
+    margin-top: 15px;
+    width: 180px;
+  }
+}
+
+

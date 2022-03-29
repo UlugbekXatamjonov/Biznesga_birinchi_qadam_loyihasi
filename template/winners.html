@@ -1,0 +1,81 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ro'yhatdan o'tganlar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" />
+    <link rel="stylesheet" href="{% static 'table.css' %}" />
+    <style>
+      @media only screen and (max-width:800px) {
+          #no-more-tables tbody,
+          #no-more-tables tr,
+          #no-more-tables td {
+              display: block;
+          }
+          #no-more-tables thead tr {
+              position: absolute;
+              top: -9999px;
+              left: -9999px;
+          }
+          #no-more-tables td {
+              position: relative;
+              padding-left: 50%;
+              border: none;
+              border-bottom: 1px solid #eee;
+          }
+          #no-more-tables td:before {
+              content: attr(data-title);
+              position: absolute;
+              left: 6px;
+              font-weight: bold;
+          }
+          #no-more-tables tr {
+              border-bottom: 1px solid #ccc;
+          }
+      }
+  </style>
+  </head>
+  <body>
+    <section class=" ">
+        <h3 class="pb-2" style="text-shadow: 0px 0px 10px black;
+        text-align: center;
+        text-decoration-color: black;">Tanlov g'oliblari</h3>
+        <div class="table-responsive" id="no-more-tables">
+            <table class="table bg-white">
+                <thead class="bg-dark text-light">
+                    <tr>
+                        <th>T/r</th>
+                        <th>Ism</th>
+                        <th>Tuman</th>
+                        <th>Lyiha nomi</th>
+                        <th>Sana</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for winner in winners %}
+                  {% if winner.natija == 'ha' %}
+                    <tr>
+                      <th data-title="T/r">{{ forloop.counter }}</th>
+                      <td data-title="Ism">{{ winner.ism }} {{ winner.familya }}</td>
+                      <td data-title="Tuman">{{ winner.tuman }}</td> 
+                      <td data-title="Loyiha nomi">{{ winner.loyiha_nomi }}</td>
+                      <td data-title="Vaqt">{{ winner.created }}</td>
+                    </tr>
+                  {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="{% static 'app.js' %}"></script>
+  </body>
+</html>
+

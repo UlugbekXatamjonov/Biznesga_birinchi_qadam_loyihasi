@@ -1,0 +1,364 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Biznesga birinchi qadam</title>
+  <!-- local:css -->
+  <link rel="stylesheet" href="{% static 'vendors/mdi/css/materialdesignicons.min.css' %}">
+  <link rel="stylesheet" href="{% static '/css/style.css' %}">
+  <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <!-- online:css -->
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+</head>
+
+<body style="background-image: url({% static 'picture1.webp' %});">
+  <div class="container-scroller" id="rasim">
+    <div class="text-center">
+      <div>
+        <div id="rasim_tex">
+          <h1 class="h1-s"> "Biznesga birinchi qadam" <br> startup loyihasi </h1>
+
+          <!-- ----------------- RO'YHATDAN O'TISH ------------------------------- -->
+    
+              <h3 style="margin-bottom: 10px;" class="mt-5">
+                'Anketa' faylini yuklab oling va uni to'ldiring, so'ng ro'yhatan o'ting
+              </h3>
+              <h6  style="margin-bottom: 10px; margin-top: 20px;"> 
+                (ro'yhatdan o'tish davomida to'ldirilgan 'Anketa' faylini yuklashni unutmang!)
+              </h6>
+              <h6  style="margin-bottom: 10px;">(ro'yhatdan o'tish 15-martga qadar davom etadi)</h6>
+              <br>
+              <button type="button" class="btn btn-gradient-success btn-fw border border-2 border-light" data-bs-toggle="modal"
+                href="#exampleModalToggle" role="button">
+                Ro'yhatan otish
+              </button>
+              <button type="button" class="btn btn-gradient-danger btn-icon-text border btna border-2 border-light">
+                <i class="mdi mdi-upload btn-icon-prepend"></i>
+                <a style="text-decoration: none; color: #FFF;" href="{% static 'anketa.docx' %}" id="jhksd" download> Anketa </a></button>
+            
+
+            <!---------------------  KUTISH  -------------------- -->
+
+              <!-- <h3 class="h3-1" style="margin-bottom: 10px;">
+                Ro'yhatdan o'tish yakuniga yetdi. Natijalar tez kunda ushbu sahifada e'lon
+              </h3>
+              <button  type="button" class="btn btn-gradient-success btn-fw border border-2 border-light"data-bs-toggle="modal" role="button">
+              <a class="h3-1" href="{% url 'all_people' %}">Ro'yhatdan o'tganlar<a/></button> -->
+           
+            <!-- -------------------  NATIJALAR  -------------------- -->
+            
+              <!-- <h3 style="margin-bottom: 10px;">
+                Tanlov natijalari bilan quida tanishishingiz mumkin
+              </h3>
+              <button  type="button" class="btn btn-gradient-success btn-fw border border-2 border-light"data-bs-toggle="modal" role="button">
+              <a href="{% url 'win_people' %}">Tanlov natijalari<a/></button> -->
+            
+            <!-- -------------------------------------------------- -->
+            
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+
+    <div>
+      <div class="modal fade mt-3" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-xl  w-100 mt-0">
+          <div class="modal-content mt-0">
+            <div class="card">
+              <div class="card-body p-0">
+
+                <form onsubmit="func()" class="forms-sample" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div id="medya" class="">
+                    <div class="p-3">
+                      <h4 class="card-title">Shaxsiy ma'lumotlarningizni to'ldiring</h4>
+                      <div class="row">
+                        <div class="col-12 col-lg-6 col-xl-4">
+                          <label for="id_ism" class="form-label">Ism</label>
+                          <input type="text" class="form-control" required id="id_ism" placeholder="Ismingiz" name="ism" />
+                        </div>
+                        <div class="col-12 col-lg-6 col-xl-4">
+                          <label for="id_familya" class="form-label">Familya</label>
+                          <input type="text" class="form-control" required id="id_familya" placeholder="Familyangiz" name="familya" />
+                        </div>
+                        <div class="col-12 col-lg-6 col-xl-4">
+                          <label for="id_sharfi" class="form-label">Sharif</label>
+                          <input type="text" class="form-control" required id="id_sharfi" placeholder="Sharifingiz" name="sharif"/>
+                        </div>
+                        <!-- section -->
+                        <div class="col-12 col-lg-6 col-xl-4">
+                          <label for="id_tsana" class="form-label">Tug'ilgan sana</label>
+                          <input type="date" class="form-control" placeholder="Tug'ilgan sanangiz" name="tsana" required id="id_tsana" />
+                        </div>
+                        <div class="col-12 col-lg-6 col-xl-4">
+                          <label for="id_tuman" class="form-label">Tuman</label>
+                          <select class="form-select" aria-label="Default select example" placeholder="Yashash tumaningiz" name="tuman" required id="id_tuman">
+                            <option selected>-------</option>
+                            <option value="namangan_sh">Namangan shahar</option>
+                            <option value="davlatobod">Davlatobod tuman</option>
+                            <option value="mingbuloq">Mingbuloq tuman</option>
+                            <option value="kosonsoy">Kosonsoy tuman</option>
+                            <option value="namangan_t">Namangan tuman</option>
+                            <option value="norin">Norin tuman</option>
+                            <option value="pop">Pop tuman</option>
+                            <option value="to'raqo'rg'on">To'raqo'rg'on tuman</option>
+                            <option value="uychi">Uychi tuman</option>
+                            <option value="uchqo'rg'on">Uchqo'rg'on tuman</option>
+                            <option value="chortoq">Chortoq tuman</option>
+                            <option value="chust">Chust tuman</option>
+                            <option value="yangiqo'rg'on">Yangiqo'rg'on tuman</option>
+                          </select>
+                        </div>
+                        <div class="col-12 col-lg-6 col-xl-4">
+                          <label for="id_manzil" class="form-label">Yashash manzil</label>
+                          <input type="text" class="form-control"  placeholder="Yashash manzilingiz" name="manzil" required id="id_manzil" />
+                        </div>
+                      </div>
+                      <br />
+                      <!-- section -->
+                      <div class="row" id="medya">
+                        <div class="col-12 col-lg-6 col-xl-4">
+                          <label for="id_jins" class="form-label">Jinsi</label>
+                          <select class="form-select" required id="id_jins" aria-label="Default select example" name="jins">
+                            <!-- <option selected>Jins</option> -->
+                            <option selected>-------</option>
+                            <option value="erkak">Erkak</option>
+                            <option value="ayol">Ayol</option>
+                          </select>
+                        </div>
+                      </div>
+                      <br />
+                      <!-- section -->
+                      <div class="row" id="medya">
+                        <div class="col-12 col-lg-6 col-xl-4">
+                          <label for="id_passport" class="form-label">Passport serya raqami</label>
+                          <input type="text" class="form-control" 
+                            placeholder="Passport serya raqami" name="passport" required id="id_passport" />
+                        </div>
+                        <div class="col-12 col-lg-6 col-xl-4">
+                          <label for="id_iib" class="form-label">Passport bergan IIB</label>
+                          <input type="text" class="form-control" 
+                            placeholder="Passportingiz berilgan IIB" name="iib" required id="id_iib" />
+                        </div>
+                        <div class="col-12 col-lg-6 col-xl-4">
+                          <label for="id_pass_time" class="form-label" >Passport berilgan sana</label>
+                          <input id="foriods" type="date" class="form-control"  name="pass_time" required id="id_pass_time" />
+                        </div>
+                      </div>
+                      <br />
+                      <!-- section -->
+                      <div class="row" id="medya">
+                        <div class="col-12 col-lg-6 col-xl-4">
+                          <label for="id_rasm" class="form-label">Passport rasmi</label>
+                          <input type="file" class="form-control"  name="rasm" required id="id_rasm" />
+                        </div>
+                        <div class="col-12 col-lg-6 col-xl-4">
+                          <label for="id_telefon" class="form-label">Telefon raqam</label>
+                          <input type="tel" class="form-control" 
+                            placeholder="Telefon nomeriz" name="telefon" required id="id_telefon" />
+                        </div>
+                        <div class="col-12 col-lg-6 col-xl-4">
+                          <label for="id_email" class="form-label">E-mail manzili</label>
+                          <input type="email" class="form-control"  placeholder="E-mail manzilingiz" name="email" required id="id_email" />
+                        </div>
+                      </div>
+                      <!-- section -->
+                      <br />
+                      <div class="d-flex justify-content-between"></div>
+                      <br />
+                    </div>
+                  </div>
+
+                  <!-- <button class="btn btn-light">Cancel</button> -->
+                  <button type="button" class="btn btn-primary float-end mb-4 me-4" id="bbbtt">Keyingi sahifa</button>
+                  <!-- <a href="./about.html" id="bbbtt"></a> -->
+                  <div class="container d-none" id="ikki">
+                    <div class="modal-dialog modal-dialog-centered modal-xl w-100 mt-0">
+                      <div class="modal-content border-0" id="cadsds">
+                        <div class="card border-0">
+                          <div class="card-body">
+                            <h4  id="ohusdfjbk">
+                              Start up g'oya bo'yicha Biznes rejada quydagi ma'lumotlar mavjud bo'lishi shart 
+                            </h4>
+                            <br />
+
+                            <!-- <form class="forms-sample"> -->
+                              <!-- section -->
+                              <div class="row" id="meedss">
+                                <div class="col-12 col-lg-6 col-xl-4 mt-3 mt-lg-0">
+                                  <label for="id_loyiha_nomi" class="form-label">Start up g'oya nomlanishi</label>
+                                  <input type="text" class="form-control"  name="loyiha_nomi"
+                                   required id="id_loyiha_nomi" />
+                                </div>
+                                <div class="col-12 col-lg-6 col-xl-4 mt-3 mt-lg-0">
+                                  <label for="id_faoliyat_turi" class="form-label" >Faoliyat turi</label>
+                                  <select class="form-select" aria-label="Default select example" name="faloliyat_turi"
+                                  required id="id_faoliyat_turi">
+                                    <option selected>---</option>
+                                    <option value="i_ch">Ishlab chiqarish</option>
+                                    <option value="savdo">Savdo</option>
+                                    <option value="xizmat_k">Xizmat ko'rsatish</option>
+                                    <option value="boshqa">Boshqa</option>
+                                  </select>
+                                </div>
+                                <div class="col-12 col-lg-6 col-xl-4 mt-3 mt-lg-0">
+                                  <label for="id_raqobatchilar" class="form-label" >Raqobatchilar:</label>
+                                  <select class="form-select" aria-label="Default select example" name="raqobatchilar"
+                                  required id="id_raqobatchilar">
+                                    <option selected>---</option>
+                                    <option value="ha">Ha</option>
+                                    <option value="yoq">Yo'q</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <!-- section -->
+                              <div class="row" id="meedss">
+                                <div class="col-12 col-lg-6 col-xl-4 mt-3 mt-lg-0">
+                                  <label for="id_st_mazmun" class="form-label">Start up loyihaning asosiy mazmuni</label>
+                                  <input type="text" class="form-control"  name="st_mazmun" 
+                                  required id="id_st_mazmun" />
+                                </div>
+                                <div class="col-12 col-lg-6 col-xl-4 mt-3 mt-lg-0">
+                                  <label for="id_st_ahamiyat" class="form-label">Startap loyihaning itimoyiy ahamiyati</label>
+                                  <input type="text" class="form-control"  name="st_ahamiyat" required id="id_st_ahamiyat" />
+                                </div>
+                                <div class="col-12 col-lg-6 col-xl-4 mt-3 mt-lg-0">
+                                  <label for="id_yangi_ishchi" class="form-label" >Yaratiladigan ishchi o'rinlari soni</label>
+                                  <input type="text" class="form-control"  name="yangi_ishchi" required id="id_yangi_ishchi" />
+                                </div>
+                              </div>
+                              <!-- section -->
+                              <div class="row" id="meedss">
+                                <div class="col-12 col-lg-6 mt-3 mt-lg-0">
+                                  <label for="id_mijozlar" class="form-label" >Maqsadli auditoriasi, mijozlari</label>
+                                  <input type="text" class="form-control"  name="mijozlar" required id="id_mijozlar" />
+                                </div>
+                                <div class="col-12 col-lg-6 mt-3 mt-lg-0">
+                                  <label for="id_st_natija" class="form-label" >Grand olingandan so'ng Start up loyihadan kutilayotgan natija</label>
+                                  <input type="text" class="form-control"  name="st_natija" 
+                                  required id="id_st_natija" />
+                                </div>
+                              </div>
+                              <!-- section -->
+                              <div class="row" id="meedss">
+                                <div class="col-12 col-lg-6 mt-3 mt-lg-0">
+                                  <label for="id_st_dolzarb" class="form-label" >Start up  loyihaning dolzarbligi
+                                    va unkalligi</label>
+                                  <input type="text"   class="form-control" name="st_dolzarb" 
+                                  required id="id_st_dolzarb"> 
+                                </div>
+                                <div class="col-12 col-lg-6 mt-3 mt-lg-0">
+                                  <label for="id_mablag" class="form-label" >Start up loyihani amalga
+                                    oshirish uchun zaruriy moliaviy mablag'lar</label>
+                                  <input type="text"   class="form-control" name="mablag"
+                                  required id="id_mablag" > 
+                                </div>
+                              </div>
+                              <!-- section -->
+                              <div class="mb-3">
+                                <div class="col-md-12">
+                                  <label for="id_malumot" class="form-label" >Qo'shimcha ma'lumot (yutuqlar, qiyinchiliklarni yengib o'tish, taqdim qilinayotgan Start up loyihani amalga oshirishdagi shaxsiy maqsad)</label>
+                                  <input type="text" class="form-control" name="malumot" required id="id_malumot" />
+                                </div>
+                              </div>
+                              <!-- section -->
+                              <div class="mb-3">
+                                <div class="row">
+                                  <div class="col-12 col-lg-6 mt-3 mt-lg-0">
+                                    <label for="id_anketa" class="form-label">Anketa(faqat pdf formatidagi fayl yuklansin)</label>
+                                    <input type="file" class="form-control" name="anketa" 
+                                    required id="id_anketa" />
+                                  </div>
+                                  <div class="col-12 col-lg-6 mt-3 mt-lg-0">
+                                    <label for="id_taqdimot_pdf" class="form-label">Taqdimot(faqat pdf formatidagi fayl yuklansin)</label>
+                                    <input type="file" class="form-control" required id="id_taqdimot_pdf" name="taqdimot_pdf" />
+                                  </div>
+                                </div>
+                              </div>
+                              <br />
+                              <!-- section -->
+                              <button type="button" id="prev" class="btn btn-secondary" >Ortga</button>
+                              <!-- {% if messages %}
+                                {% for message in messages %}
+
+                                  {{ message }}
+
+                                {% endfor %}
+                              {% endif %} -->
+
+<!-- data-bs-target="#exampleModal"
+                              data-bs-toggle="modal" -->
+                                       
+                              <button 
+                              type="submit"
+                              
+                                      class="btn btn-primary float-end" 
+                                      id="buutttdds">
+                                Tugatish
+                              </button>
+                            <!-- </form> onclick="test()" -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<!-- <script src="./sorovnoma.js"></script> -->
+<script src="{% static 'sorovnoma.js' %}"></script>
+<script>
+  {% if messages %}
+    {% for message in messages %}
+    let error = "linear-gradient(to right, #fc0505, #ff8800)"
+    let warning = "linear-gradient(to right, #fcdc05, #f5ff00)"
+    let success = "linear-gradient(to right, #00b09b, #96c93d)"
+
+  window.onload=()=>{
+    // const test = () => {
+      Toastify({
+      text: "{{message}}",
+      // className: "alert alert-{{message.tags}}"
+      duration: 3000,
+      newWindow: true,
+      close: true,
+      gravity: "boottom", // `top` or `bottom`
+      position: "right", // `left`, `center` or `right`
+      stopOnFocus: true, // Prevents dismissing of toast on hover
+      style: {
+        // background: "linear-gradient(to right, #00b09b, #96c93d)",
+        background: "{{message.tags}}",
+      },
+      onClick: function () { } // Callback after click
+    }).showToast();
+    // }
+  }
+    {%endfor%}
+  {%endif%}
+</script>
+
+</html>
